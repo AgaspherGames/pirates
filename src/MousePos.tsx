@@ -16,20 +16,37 @@ const MousePos: React.FC<MousePosProps> = () => {
       });
     }
     function RClickHandle(e: MouseEvent) {
-      console.log(e);
       e.preventDefault();
       http.post("https://datsblack.datsteam.dev/api/longScan", {
         x: e.pageX,
         y: e.pageY,
       });
     }
+    function AttackHandle(e: MouseEvent) {
+      console.log(e);
+      e.preventDefault();
+      const shipId = prompt("shipId");
+      http.post("https://datsblack.datsteam.dev/api/shipCommand", {
+        ships: [
+          {
+            id: shipId,
+            cannonShoot: {
+              x: e.pageX,
+              y: e.pageY,
+            },
+          },
+        ],
+      });
+    }
 
     window.addEventListener("mousemove", handle);
     window.addEventListener("contextmenu", RClickHandle);
+    window.addEventListener("click", AttackHandle);
 
     return () => {
       window.removeEventListener("mousemove", handle);
       window.removeEventListener("contextmenu", RClickHandle);
+      window.removeEventListener("click", AttackHandle);
     };
   }, []);
 

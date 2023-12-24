@@ -21,7 +21,9 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
       style={{
         width: ship.size + "px",
         height: "1px",
-        background: enemy ? "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,15,15,1) 50%, rgba(255,255,255,1) 100%)" : "linear-gradient(90deg, rgba(0,249,255,1) 0%, rgba(15,237,255,1) 50%, rgba(255,255,255,1) 100%)",
+        background: enemy
+          ? "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,15,15,1) 50%, rgba(255,255,255,1) 100%)"
+          : "linear-gradient(90deg, rgba(0,249,255,1) 0%, rgba(15,237,255,1) 50%, rgba(255,255,255,1) 100%)",
         position: "absolute",
         top: ship.y,
         left: ship.x,
@@ -49,7 +51,7 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
         }}
         className="coords"
       >
-        {ship.hp}hp {ship.x} : {ship.y}
+        id:{ship.id} {ship.hp}hp {ship.x} : {ship.y}
       </div>
     </div>
   );
