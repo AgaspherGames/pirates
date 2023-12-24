@@ -9,9 +9,9 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
   function getPos() {
     const rotates = {
       north: "-90deg",
-      west: "0deg",
+      west: "180deg",
       south: "90deg",
-      east: "180deg",
+      east: "0deg",
     }[ship.direction];
     return rotates;
   }
@@ -21,7 +21,7 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
       style={{
         width: ship.size + "px",
         height: "1px",
-        background: enemy ? "red" : "blue",
+        background: enemy ? "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,15,15,1) 50%, rgba(255,255,255,1) 100%)" : "linear-gradient(90deg, rgba(0,249,255,1) 0%, rgba(15,237,255,1) 50%, rgba(255,255,255,1) 100%)",
         position: "absolute",
         top: ship.y,
         left: ship.x,

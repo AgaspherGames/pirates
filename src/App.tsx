@@ -25,15 +25,15 @@ function App() {
     setScan(res);
   }
 
-  useEffect(() => {
-    timeout.current = setInterval(() => {
-      scanArea();
-    }, 3000);
-    scanArea();
-    return () => {	
-      clearInterval(timeout.current)
-     }
-  }, []);
+  // useEffect(() => {
+  //   timeout.current = setInterval(() => {
+  //     scanArea();
+  //   }, 3000);
+  //   scanArea();
+  //   return () => {	
+  //     clearInterval(timeout.current)
+  //    }
+  // }, []);
 
   return (
     <>
@@ -48,7 +48,7 @@ function App() {
         {scan?.scan.enemyShips.map((el) => (
           <Ship enemy={true} ship={el} />
         ))}
-        {/* <Ship
+        <Ship
           enemy={false}
           ship={{
             x: 500,
@@ -56,7 +56,7 @@ function App() {
             direction: "east",
             size: 4,
           }}
-        /> */}
+        />
         <Grid />
       </div>
     </>
