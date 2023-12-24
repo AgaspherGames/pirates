@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import axios from "axios";
+
 import map from "./assets/map.json";
 import Island from "./Island";
 import { IScanResponse } from "./interfaces";

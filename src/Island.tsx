@@ -1,6 +1,5 @@
 import React from "react";
 import { IIsland } from "./interfaces";
-import Block from "./Block";
 interface IslandProps {
   island: IIsland;
 }
