@@ -5,8 +5,8 @@ const Block: React.FC<BlockProps> = () => {
   return (
     <div
       style={{
-        width: "10px",
-        height: "10px",
+        width: "1px",
+        height: "1px",
         background: 'red'
       }}
     ></div>

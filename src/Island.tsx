@@ -10,17 +10,13 @@ const Island: React.FC<IslandProps> = ({ island }) => {
     <div
       style={{
         position: "absolute",
-        top: island.start[0]*10,
-        left: island.start[1]*10,
+        top: island.start[0],
+        left: island.start[1],
+        width: island.map[0].length,
+        height: island.map.length,
+        background: 'green'
       }}
     >
-      {island.map.map((el, ind) => (
-        <div style={{display:"flex"}}>
-          {el.map((item) => (
-            <Block />
-          ))}
-        </div>
-      ))}
     </div>
   );
 };

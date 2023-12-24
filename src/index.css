@@ -67,3 +67,10 @@ button:focus-visible {
   }
 }
 
+.ship:hover .coords{
+  opacity: 1;
+}
+.ship .coords{
+  opacity: 0;
+}
+

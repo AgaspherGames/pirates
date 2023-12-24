@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import map from "./assets/map.json";
@@ -7,9 +7,12 @@ import { IScanResponse } from "./interfaces";
 import { http } from "./http";
 import Ship from "./Ship";
 import Grid from "./Grid";
+import MousePos from "./MousePos";
 
 function App() {
   const [scan, setScan] = useState<IScanResponse>();
+
+  const timeout = useRef<number>();
 
   async function scanArea() {
     const res = (
@@ -20,23 +23,40 @@ function App() {
       })
     ).data;
     setScan(res);
-    console.log(res);
   }
 
   useEffect(() => {
-    // console.log(map);
+    timeout.current = setInterval(() => {
+      scanArea();
+    }, 3000);
     scanArea();
-  });
+    return () => {	
+      clearInterval(timeout.current)
+     }
+  }, []);
 
   return (
     <>
       <div>
+        <MousePos />
         {map.islands.map((island, index) => (
           <Island key={index} island={island} />
         ))}
         {scan?.scan.myShips.map((el) => (
-          <Ship ship={el} />
+          <Ship enemy={false} ship={el} />
         ))}
+        {scan?.scan.enemyShips.map((el) => (
+          <Ship enemy={true} ship={el} />
+        ))}
+        {/* <Ship
+          enemy={false}
+          ship={{
+            x: 500,
+            y: 500,
+            direction: "east",
+            size: 4,
+          }}
+        /> */}
         <Grid />
       </div>
     </>
