@@ -41,12 +41,15 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
           border: "rgba(255,255,255,0.5) 1px solid",
         }}
       ></div>
-      <div style={{
-        rotate: "-"+getPos(),
-        display: 'flex',
-        width: 'max-content'
-      }} className="coords">
-        {ship.x} : {ship.y}
+      <div
+        style={{
+          rotate: "-" + getPos(),
+          display: "flex",
+          width: "max-content",
+        }}
+        className="coords"
+      >
+        {ship.hp}hp {ship.x} : {ship.y}
       </div>
     </div>
   );

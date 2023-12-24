@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { http } from "./http";
 interface MousePosProps {}
 
 const MousePos: React.FC<MousePosProps> = () => {
@@ -14,11 +15,21 @@ const MousePos: React.FC<MousePosProps> = () => {
         y: e.pageY,
       });
     }
+    function RClickHandle(e: MouseEvent) {
+      console.log(e);
+      e.preventDefault();
+      http.post("https://datsblack.datsteam.dev/api/longScan", {
+        x: e.pageX,
+        y: e.pageY,
+      });
+    }
 
     window.addEventListener("mousemove", handle);
+    window.addEventListener("contextmenu", RClickHandle);
 
     return () => {
       window.removeEventListener("mousemove", handle);
+      window.removeEventListener("contextmenu", RClickHandle);
     };
   }, []);
 
@@ -26,7 +37,7 @@ const MousePos: React.FC<MousePosProps> = () => {
     <div
       style={{
         position: "absolute",
-        top: pos.y-20 + "px",
+        top: pos.y - 20 + "px",
         left: pos.x + "px",
       }}
     >
