@@ -29,7 +29,7 @@ const MousePos: React.FC<MousePosProps> = () => {
       http.post("https://datsblack.datsteam.dev/api/shipCommand", {
         ships: [
           {
-            id: shipId,
+            id: Number(shipId),
             cannonShoot: {
               x: e.pageX,
               y: e.pageY,
