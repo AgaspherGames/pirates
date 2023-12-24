@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { IMyShip } from "./interfaces";
+import Modal from "./Modal";
 interface ShipProps {
   ship: IMyShip;
   enemy: boolean;
@@ -16,6 +17,8 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
     return rotates;
   }
 
+  const [hover, setHover] = useState(false);
+
   return (
     <div
       style={{
@@ -31,6 +34,12 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
         rotate: getPos(),
       }}
       className="ship"
+      onMouseEnter={() => {
+        setHover(true);
+      }}
+      onMouseLeave={() => {
+        setHover(false);
+      }}
     >
       <div
         style={{
@@ -51,7 +60,19 @@ const Ship: React.FC<ShipProps> = ({ ship, enemy }) => {
         }}
         className="coords"
       >
-        id:{ship.id} {ship.hp}hp {ship.x} : {ship.y}
+        <Modal
+          isOpen={hover}
+          close={() => {}}
+          style={{ top: 0, left: 0, background: "rgba(0,0,0,0.5)" }}
+        >
+          <p>id:{ship.id}</p>
+          <p>{ship.hp}hp</p>
+          <p>
+            {ship.x} : {ship.y}
+          </p>
+          <p>speed: {ship.speed}</p>
+        </Modal>
+        {/* id:{ship.id} {ship.hp}hp {ship.x} : {ship.y} */}
       </div>
     </div>
   );
